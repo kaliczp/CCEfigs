@@ -1,9 +1,9 @@
-makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = FALSE) {
+makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = FALSE, SmallPlacement = -1.2, LastSmallPlacement = 4) {
     basecolour <- "darkgreen"
     require(ggplot2)
     x$PlotData <- sprintf("%.1f", round(x$Index, digits = 1))
     x$Place <- -0.5
-    x[1:4, "Place"] <- -1.2
+    x[1:LastSmallPlacement, "Place"] <- SmallPlacement
     out <- ggplot(data = x, aes(x=Index, y=Country)) +
         geom_segment(aes(yend=Country, xend=0), colour= basecolour)+
         geom_vline(xintercept=0, colour = "darkgrey") +
