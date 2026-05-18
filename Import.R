@@ -61,3 +61,13 @@ T1agrland <- data.frame(Region = rep(T1SubsectRegion.Region),
 
 T1.df <- rbind(T1grossprodUSD, T1grossprodUSD, T1grossprodUSD, T1grossprodagrperc, T1agrland)
 T1.df$Variable <- rep(c("Harvested", "Quantity", "ProdUSD", "ProdAgrperc", "Area"), each = 84)
+
+T1.pre <- T1.df[T1.df$Date == "1993-1997", -3]
+T1.post <- T1.df[T1.df$Date == "2018-2022", -3]
+
+T1.diff <- cbind(T1.pre[, c(1:2,4)] , T1.pre[,3], T1.post[,3])
+colnames(T1.diff) <- c("Region", "Type", "Variable", "D1993-97", "D2018-22")
+
+T1.diff$Diff <- T1.diff[,5] - T1.diff[,4]
+
+T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
