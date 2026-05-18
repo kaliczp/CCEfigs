@@ -3,6 +3,7 @@ makeRangsor <- function(x, xlim = NULL, shape = "rectangle") {
     require(ggplot2)
     x$PlotData <- sprintf("%.1f", round(x$Index, digits = 1))
     x$Place <- -0.5
+    x[1:4, "Place"] <- -1.2
     out <- ggplot(data = x, aes(x=Index, y=Country)) +
         geom_segment(aes(yend=Country, xend=0), colour= basecolour)+
         geom_vline(xintercept=0, colour = "darkgrey") +
