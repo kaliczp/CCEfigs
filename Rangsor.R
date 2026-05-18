@@ -1,4 +1,4 @@
-makeRangsor <- function(x, xlim = NULL) {
+makeRangsor <- function(x, xlim = NULL, shape = "rectangle") {
     basecolour <- "darkgreen"
     require(ggplot2)
     x$Place <- -0.5
@@ -7,10 +7,15 @@ makeRangsor <- function(x, xlim = NULL) {
         geom_vline(xintercept=0, colour = "darkgrey") +
         theme_classic() +
         labs(x = "Index [%]", y = NULL) +
-        geom_text(aes(label = round(Index,1)), colour = "black", size = 2.9) +
         geom_text(aes(x = Place, label = Country, hjust = "right"),
                                colour = basecolour) +
         guides(y = "none")
+    if(shape == "rectangle") {
+        out <- out + geom_label(aes(label = round(Index,1)),
+                                colour = "white" , size = 2.9, fill = basecolour)
+    } else {
+        out <- out + geom_text(aes(label = round(Index,1)), colour = "black", size = 2.9)
+    }
     if(!is.null(xlim)) {
         out <- out + scale_x_continuous(limits = xlim)
     }
