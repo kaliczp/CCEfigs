@@ -1,4 +1,4 @@
-makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = TRUE) {
+makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = FALSE) {
     basecolour <- "darkgreen"
     require(ggplot2)
     x$PlotData <- sprintf("%.1f", round(x$Index, digits = 1))
@@ -16,7 +16,7 @@ makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = TRUE) {
         if(rampcolor) {
             out <- out + geom_label(aes(label = PlotData, fill = Index),
                                     text.colour = "white" , size = 2.9, show.legend = FALSE) +
-                scale_fill_gradient(low = "yellow", high = "red")
+                scale_fill_gradient(low = "#f4e0b6", high = "#762419")
         } else {
             out <- out + geom_label(aes(label = PlotData),
                                     colour = "white" , size = 2.9, fill = basecolour)
