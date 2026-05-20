@@ -33,7 +33,7 @@ makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = FALSE, 
                                colour = "black", size = 2.9)
     }
     if(!is.null(xlim)) {
-        out <- out + scale_x_continuous(limits = xlim)
+        out <- out + scale_x_continuous(limits = xlim, breaks = seq(0, 30, by = 10))
     }
     out
 }
