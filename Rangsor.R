@@ -12,7 +12,12 @@ makeRangsor <- function(x, xlim = NULL, shape = "rectangle", rampcolor = FALSE, 
         labs(x = "Index [%]", y = NULL) +
         geom_text(aes(x = Place, label = Country, hjust = "right"),
                                colour = basecolour) +
-        guides(y = "none")
+        theme(
+            axis.line.y  = element_blank(),
+            axis.text.y  = element_blank(),
+            axis.ticks.y = element_blank(),
+            axis.title.y = element_blank()
+        )
     if(shape == "rectangle") {
         if(rampcolor) {
             out <- out + geom_label(aes(label = PlotData, fill = Index),
