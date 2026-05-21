@@ -74,3 +74,4 @@ T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
 
 ## Order by factor
 T1.diff.nsum$Region <- factor(T1.diff.nsum$Region, levels = T1SubsectRegion.Region[7:1])
+T1.diff.nsum$Type <- factor(T1.diff.nsum$Type, levels = T1SubsectRegion.Type)
