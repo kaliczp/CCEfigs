@@ -8,7 +8,9 @@ RangsorO <- Rangsor[order(Rangsor$Index),]
 RangsorO$Country <- factor(RangsorO$Country, levels = RangsorO$Country)
 makeRangsor(RangsorO, xlim = c(-6,33))
 
+#############
 ### Second table
+#############
 T1SubsectRegion.Type <- as.character(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B2:L2'))
 T1SubsectRegion.Type <- T1SubsectRegion.Type[!T1SubsectRegion.Type == "NA"]
 T1SubsectRegion.Date <- as.character(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B3:M3'))
@@ -82,3 +84,82 @@ T1.diff[1:245, "Percent"] <- ifelse(T1.diff[1:245, "D1993-97"] == 0,
                                         0)
 
 T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
+
+#############
+### Third table
+#############
+T2SubsectRegion.Type <- as.character(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B2:L2'))
+T2SubsectRegion.Type <- T2SubsectRegion.Type[!T2SubsectRegion.Type == "NA"]
+T2SubsectRegion.Date <- as.character(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B3:M3'))
+T2SubsectRegion.Region <- as.character(t(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'A5:A11')))
+
+## Harvested area, 100000 ha
+T2SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B5:M11')
+T2harvest <- data.frame(Region = rep(T2SubsectRegion.Region),
+                        Type = rep(T2SubsectRegion.Type, each = 14),
+                        Date = rep(T2SubsectRegion.Date, each = 7),
+                        Value = as.numeric(as.matrix(T2SubsectRegion))
+                        )
+
+## Yield, t ha-1
+T2SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B13:M19')
+T2yield <- data.frame(Region = rep(T2SubsectRegion.Region),
+                      Type = rep(T2SubsectRegion.Type, each = 14),
+                      Date = rep(T2SubsectRegion.Date, each = 7),
+                      Value = as.numeric(as.matrix(T2SubsectRegion))
+                      )
+
+## Production quantity, million t
+T2SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B21:M27')
+T2prodquant <- data.frame(Region = rep(T2SubsectRegion.Region),
+                          Type = rep(T2SubsectRegion.Type, each = 14),
+                          Date = rep(T2SubsectRegion.Date, each = 7),
+                          Value = as.numeric(as.matrix(T2SubsectRegion))
+                          )
+
+## Gross production, billion USD
+T2SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B29:M35')
+T2grossprod <- data.frame(Region = rep(T2SubsectRegion.Region),
+                          Type = rep(T2SubsectRegion.Type, each = 14),
+                          Date = rep(T2SubsectRegion.Date, each = 7),
+                          Value = as.numeric(as.matrix(T2SubsectRegion))
+                          )
+
+## Ratio in harvested areas, %
+T2SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B37:M43')
+T2harvestedratio <- data.frame(Region = rep(T2SubsectRegion.Region),
+                               Type = rep(T2SubsectRegion.Type, each = 14),
+                               Date = rep(T2SubsectRegion.Date, each = 7),
+                               Value = as.numeric(as.matrix(T2SubsectRegion))
+                               )
+
+## Ratio in agriculture gross production, %
+T2SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 3, col_names = FALSE, range = 'B45:M51')
+T2agricultureGPratio <- data.frame(Region = rep(T2SubsectRegion.Region),
+                                   Type = rep(T2SubsectRegion.Type, each = 14),
+                                   Date = rep(T2SubsectRegion.Date, each = 7),
+                                   Value = as.numeric(as.matrix(T2SubsectRegion))
+                                   )
+
+
+T2.df <- rbind(T2harvest, T2yield, T2prodquant, T2grossprod, T2harvestedratio, T2agricultureGPratio)
+T2.VariableCat <- c("Harvested area, 100000 ha",
+                    "Yield, t ha-1 ",
+                    "Production quantity, million t",
+                    "Gross production, billion USD",
+                    "Ratio in harvested areas, %",
+                    "Ratio in agriculture gross production, %")
+T2.df$Variable <- rep(T2.VariableCat, each = 84)
+
+T2.pre <- T2.df[T2.df$Date == "1993-1997", -3]
+T2.post <- T2.df[T2.df$Date == "2018-2022", -3]
+
+T2.diff <- cbind(T2.pre[, c(1:2,4)] , T2.pre[,3], T2.post[,3])
+colnames(T2.diff) <- c("Region", "Type", "Variable", "D1993-97", "D2018-22")
+
+T2.diff$Diff <- T2.diff[, "D2018-22"] - T2.diff[, "D1993-97"]
+
+## Order by factor
+T2.diff$Region <- factor(T2.diff$Region, levels = T2SubsectRegion.Region[7:1])
+T2.diff$Type <- factor(T2.diff$Type, levels = T2SubsectRegion.Type)
+T2.diff$Variable <- factor(T2.diff$Variable, levels = T2.VariableCat)
