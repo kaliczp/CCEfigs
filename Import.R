@@ -70,6 +70,7 @@ T1.diff <- cbind(T1.pre[, c(1:2,4)] , T1.pre[,3], T1.post[,3])
 colnames(T1.diff) <- c("Region", "Type", "Variable", "D1993-97", "D2018-22")
 
 T1.diff$Diff <- T1.diff[,5] - T1.diff[,4]
+T1.diff$Percent <- ifelse(T1.diff[,4] == 0T1.diff$Diff/(T1.diff[,4]/100)
 
 T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
 
