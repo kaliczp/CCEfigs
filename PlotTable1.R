@@ -1,9 +1,9 @@
 library(ggplot2)
 
-out <- ggplot(T1.diff.nsum,
+out <- ggplot(T1.diff,
               aes(x = Variable,
                   y = Region,
-                  fill = Percent)) +
+                  fill = Diff)) +
     geom_tile(color = "white", linewidth = 0.3) +
     facet_wrap(~ Type, ncol = 3) +
     scale_fill_gradient2(
@@ -28,9 +28,16 @@ out <- ggplot(T1.diff.nsum,
         ),
         strip.text = element_text(face = "bold"),
         legend.position = "right"
-    ) +
+    )
+
+outtext <- out +
     geom_text(aes(label = round(Percent, 1)),
               size = 3)
+
+outtext <- out +
+    geom_text(aes(label = round(Diff, 1)),
+              size = 3)
+
 pdf("Table1Heat.pdf")
-out
+outtext
 dev.off()
