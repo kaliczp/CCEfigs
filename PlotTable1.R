@@ -17,27 +17,22 @@ out <- ggplot(T1.diff,
     labs(
         x = NULL,
         y = NULL,
-        title = "Changes between the two periods"
+        title = NULL
     ) +
     theme_minimal(base_size = 12) +
     theme(
         panel.grid = element_blank(),
         axis.text.x = element_text(
-            angle = 65,
+            angle = 45,
             hjust = 1
         ),
         strip.text = element_text(face = "bold"),
         legend.position = "right"
     )
-
-outtext <- out +
-    geom_text(aes(label = round(Percent, 1)),
-              size = 3)
-
 outtext <- out +
     geom_text(aes(label = round(Diff, 1)),
-              size = 3)
-
-pdf("Table1Heat.pdf")
+              size = 3
+)
+pdf("PlotTable1Heat.pdf")
 outtext
 dev.off()
