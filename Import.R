@@ -14,9 +14,8 @@ T1SubsectRegion.Type <- T1SubsectRegion.Type[!T1SubsectRegion.Type == "NA"]
 T1SubsectRegion.Date <- as.character(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B3:M3'))
 T1SubsectRegion.Region <- as.character(t(read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'A5:A11')))
 
-T1SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B5:M11')
-
 ## Harvested area, 100000 ha
+T1SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B5:M11')
 T1harvest <- data.frame(Region = rep(T1SubsectRegion.Region),
                         Type = rep(T1SubsectRegion.Type, each = 14),
                         Date = rep(T1SubsectRegion.Date, each = 7),
@@ -25,7 +24,6 @@ T1harvest <- data.frame(Region = rep(T1SubsectRegion.Region),
 
 ## Production quantity, million t
 T1SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B13:M19')
-
 T1production <- data.frame(Region = rep(T1SubsectRegion.Region),
                         Type = rep(T1SubsectRegion.Type, each = 14),
                         Date = rep(T1SubsectRegion.Date, each = 7),
@@ -34,7 +32,6 @@ T1production <- data.frame(Region = rep(T1SubsectRegion.Region),
 
 ## Gross production, billion USD
 T1SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B21:M27')
-
 T1grossprodUSD <- data.frame(Region = rep(T1SubsectRegion.Region),
                              Type = rep(T1SubsectRegion.Type, each = 14),
                              Date = rep(T1SubsectRegion.Date, each = 7),
@@ -43,7 +40,6 @@ T1grossprodUSD <- data.frame(Region = rep(T1SubsectRegion.Region),
 
 ## Gross production in agriculture, %
 T1SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B29:M35')
-
 T1grossprodagrperc <- data.frame(Region = rep(T1SubsectRegion.Region),
                              Type = rep(T1SubsectRegion.Type, each = 14),
                              Date = rep(T1SubsectRegion.Date, each = 7),
@@ -52,15 +48,18 @@ T1grossprodagrperc <- data.frame(Region = rep(T1SubsectRegion.Region),
 
 ## Area in agricultural lands, %
 T1SubsectRegion <- read_excel("kalicz_peti_CEE_abrak.xlsx", sheet = 2, col_names = FALSE, range = 'B37:M43')
-
 T1agrland <- data.frame(Region = rep(T1SubsectRegion.Region),
                         Type = rep(T1SubsectRegion.Type, each = 14),
                         Date = rep(T1SubsectRegion.Date, each = 7),
                         Value = as.numeric(as.matrix(T1SubsectRegion))
                         )
 
-T1.df <- rbind(T1grossprodUSD, T1grossprodUSD, T1grossprodUSD, T1grossprodagrperc, T1agrland)
-T1.VariableCat <- c("Harvested", "Quantity", "ProdUSD", "ProdAgrperc", "Area")
+T1.df <- rbind(T1harvest, T1production, T1grossprodUSD, T1grossprodagrperc, T1agrland)
+T1.VariableCat <- c("Harvested area, 100000 ha",
+                    "Production quantity, million t",
+                    "Gross production, billion USD",
+                    "Gross production in agriculture, %",
+                    "Area in agricultural lands, %")
 T1.df$Variable <- rep(T1.VariableCat, each = 84)
 
 T1.pre <- T1.df[T1.df$Date == "1993-1997", -3]
@@ -71,13 +70,15 @@ colnames(T1.diff) <- c("Region", "Type", "Variable", "D1993-97", "D2018-22")
 
 T1.diff$Diff <- T1.diff[, "D2018-22"] - T1.diff[, "D1993-97"]
 
-T1.diff[246:413, "Percent"] <- T1.diff[246:413, "Diff"]
-T1.diff[1:245, "Percent"] <- ifelse(T1.diff[1:245, "D1993-97"] == 0,
-                                    T1.diff$Diff/(T1.diff[,"D1993-97"]/100)
-
 ## Order by factor
 T1.diff$Region <- factor(T1.diff$Region, levels = T1SubsectRegion.Region[7:1])
 T1.diff$Type <- factor(T1.diff$Type, levels = T1SubsectRegion.Type)
 T1.diff$Variable <- factor(T1.diff$Variable, levels = T1.VariableCat)
+
+## Work with percent
+T1.diff[246:413, "Percent"] <- T1.diff[246:413, "Diff"]
+T1.diff[1:245, "Percent"] <- ifelse(T1.diff[1:245, "D1993-97"] == 0,
+                                    T1.diff$Diff/(T1.diff[,"D1993-97"]/100,
+                                        0)
 
 T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
