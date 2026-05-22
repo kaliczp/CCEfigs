@@ -33,6 +33,6 @@ outtext <- out +
     geom_text(aes(label = round(Diff, 1)),
               size = 3
 )
-pdf("PlotTable2Heat.pdf")
+pdf("PlotTable2HeatScaled.pdf")
 outtext
 dev.off()

@@ -163,3 +163,15 @@ T2.diff$Diff <- T2.diff[, "D2018-22"] - T2.diff[, "D1993-97"]
 T2.diff$Region <- factor(T2.diff$Region, levels = T2SubsectRegion.Region[7:1])
 T2.diff$Type <- factor(T2.diff$Type, levels = T2SubsectRegion.Type)
 T2.diff$Variable <- factor(T2.diff$Variable, levels = T2.VariableCat)
+
+## Unify spread in all crops
+tmp <- unlist(tapply(T2.diff[!T2.diff$Type == "SUM*", "Diff"],
+                     T2.diff[!T2.diff$Type == "SUM*", "Variable"],
+                     FUN = function(x) as.numeric(scale(x, center = FALSE)), simplify = TRUE))
+T2.diff[!T2.diff$Type == "SUM*", "Standard"] <- tmp
+
+## Unify spread in SUM*
+tmp <- unlist(tapply(T2.diff[T2.diff$Type == "SUM*", "Diff"],
+                     T2.diff[T2.diff$Type == "SUM*", "Variable"],
+                     FUN = function(x) as.numeric(scale(x, center = FALSE)), simplify = TRUE))
+T2.diff[T2.diff$Type == "SUM*", "Standard"] <- tmp
