@@ -3,8 +3,8 @@ library(ggplot2)
 out <- ggplot(T2.diff,
               aes(x = Variable,
                   y = Region,
-                  fill = Diff)) +
-    geom_tile(color = "white", linewidth = 0.3) +
+                  fill = Standard)) +
+    geom_tile(color = "white", linewidth = 0.3, show.legend = FALSE) +
     facet_wrap(~ Type, ncol = 3) +
     scale_fill_gradient2(
         low = "#2166AC",
