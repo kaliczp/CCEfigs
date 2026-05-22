@@ -69,13 +69,15 @@ T1.post <- T1.df[T1.df$Date == "2018-2022", -3]
 T1.diff <- cbind(T1.pre[, c(1:2,4)] , T1.pre[,3], T1.post[,3])
 colnames(T1.diff) <- c("Region", "Type", "Variable", "D1993-97", "D2018-22")
 
-T1.diff$Diff <- T1.diff[,5] - T1.diff[,4]
-T1.diff$Percent <- ifelse(T1.diff[,4] == 0T1.diff$Diff/(T1.diff[,4]/100)
+T1.diff$Diff <- T1.diff[, "D2018-22"] - T1.diff[, "D1993-97"]
 
-T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
+T1.diff[246:413, "Percent"] <- T1.diff[246:413, "Diff"]
+T1.diff[1:245, "Percent"] <- ifelse(T1.diff[1:245, "D1993-97"] == 0,
+                                    T1.diff$Diff/(T1.diff[,"D1993-97"]/100)
 
 ## Order by factor
-T1.diff.nsum$Region <- factor(T1.diff.nsum$Region, levels = T1SubsectRegion.Region[7:1])
-T1.diff.nsum$Type <- factor(T1.diff.nsum$Type, levels = T1SubsectRegion.Type)
-T1.diff.nsum$Variable <- factor(T1.diff.nsum$Variable, levels = T1.VariableCat)
+T1.diff$Region <- factor(T1.diff$Region, levels = T1SubsectRegion.Region[7:1])
+T1.diff$Type <- factor(T1.diff$Type, levels = T1SubsectRegion.Type)
+T1.diff$Variable <- factor(T1.diff$Variable, levels = T1.VariableCat)
 
+T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
