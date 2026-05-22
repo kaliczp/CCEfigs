@@ -80,7 +80,7 @@ T1.diff$Variable <- factor(T1.diff$Variable, levels = T1.VariableCat)
 ## Work with percent
 T1.diff[246:413, "Percent"] <- T1.diff[246:413, "Diff"]
 T1.diff[1:245, "Percent"] <- ifelse(T1.diff[1:245, "D1993-97"] == 0,
-                                    T1.diff$Diff/(T1.diff[,"D1993-97"]/100,
+                                    T1.diff$Diff/(T1.diff[,"D1993-97"]/100),
                                         0)
 
 T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
