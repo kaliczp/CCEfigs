@@ -23,7 +23,7 @@ out <- ggplot(T1.diff.nsum,
     theme(
         panel.grid = element_blank(),
         axis.text.x = element_text(
-            angle = 45,
+            angle = 65,
             hjust = 1
         ),
         strip.text = element_text(face = "bold"),
