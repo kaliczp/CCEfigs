@@ -60,7 +60,8 @@ T1agrland <- data.frame(Region = rep(T1SubsectRegion.Region),
                         )
 
 T1.df <- rbind(T1grossprodUSD, T1grossprodUSD, T1grossprodUSD, T1grossprodagrperc, T1agrland)
-T1.df$Variable <- rep(c("Harvested", "Quantity", "ProdUSD", "ProdAgrperc", "Area"), each = 84)
+T1.VariableCat <- c("Harvested", "Quantity", "ProdUSD", "ProdAgrperc", "Area")
+T1.df$Variable <- rep(T1.VariableCat, each = 84)
 
 T1.pre <- T1.df[T1.df$Date == "1993-1997", -3]
 T1.post <- T1.df[T1.df$Date == "2018-2022", -3]
@@ -75,3 +76,5 @@ T1.diff.nsum <- T1.diff[!T1.diff$Type == "SUM*", ]
 ## Order by factor
 T1.diff.nsum$Region <- factor(T1.diff.nsum$Region, levels = T1SubsectRegion.Region[7:1])
 T1.diff.nsum$Type <- factor(T1.diff.nsum$Type, levels = T1SubsectRegion.Type)
+T1.diff.nsum$Variable <- factor(T1.diff.nsum$Variable, levels = T1.VariableCat)
+
