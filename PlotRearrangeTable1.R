@@ -1,5 +1,8 @@
 library(ggplot2)
 
+# Abbreviated region names
+levels(T1.diff$Region) <- c("E", "WE", "SEE", "SE", "NE", "EE", "CE")
+
 out <- ggplot(T1.diff,
               aes(x = Type,
                   y = Region,
