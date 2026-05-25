@@ -1,2 +1,14 @@
 * Figure test
 Based on Rtanacs
+
+* Improvement
+Átrendeztem az ábrákat az ábra-tábla struktúrát követve.
+
+Azért rendeztem így, mert egyrészt a fő üzenetünk a wheat, maize ...,
+cereals, oilcros növények és növénycsoportok egyes "attribútiumaiban"
+(harvested area, gross prod. ...) lezajlott változások régiónként.
+
+Azt, hogy a régió vagy az attribútumok kerüljenek az x vagy az y
+tengelyre az határozta meg, melyiknek rövidebb a neve.
+
+A régiók megnevezését rövidíteni kellene Central Europe=CE, Eastern Europe=EE ...
