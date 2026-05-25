@@ -4,7 +4,7 @@ out <- ggplot(T1.diff,
               aes(x = Type,
                   y = Region,
                   fill = Diff)) +
-    geom_tile(color = "white", linewidth = 0.3) +
+    geom_tile(color = "white", linewidth = 0.3, show.legend = FALSE) +
     facet_wrap(~ Variable, ncol = 3) +
     scale_fill_gradient2(
         low = "#2166AC",
