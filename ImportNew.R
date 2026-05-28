@@ -50,7 +50,7 @@ T1.df <- rbind(T1Cereals, T1OilCrops, T1Fruits, T1vegetables, T1roots)
 
 
 T1.df$Product <- factor(T1.df$Product, levels = T1SubsectRegion.Product)
-T1.df$Region <- factor(T1.df$Region, levels = T1SubsectRegion.Region[7:1])
+T1.df$Region <- factor(T1.df$Region, levels = T1SubsectRegion.Region)
 T1.df$Type <- factor(T1.df$Type, levels = T1SubsectRegion.Type[5:1])
 
 #############
