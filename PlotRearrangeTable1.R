@@ -1,14 +1,14 @@
 library(ggplot2)
 
 # Abbreviated region names
-levels(T1.diff$Region) <- c("E", "WE", "SEE", "SE", "NE", "EE", "CE")
+levels(T1.df$Region) <- c("E", "WE", "SEE", "SE", "NE", "EE", "CE")
 
-out <- ggplot(T1.diff,
-              aes(x = Type,
-                  y = Region,
+out <- ggplot(T1.df,
+              aes(x = Region,
+                  y = Type,
                   fill = Diff)) +
     geom_tile(color = "white", linewidth = 0.3, show.legend = FALSE) +
-    facet_wrap(~ Variable, ncol = 3) +
+    facet_wrap(~ Product, ncol = 3) +
     scale_fill_gradient2(
         low = "#2166AC",
         mid = "white",
