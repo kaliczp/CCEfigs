@@ -2,7 +2,10 @@ library(readxl)
 #############
 ### Second table
 #############
+# Get indicator type Harvested ... e.g.
 T1SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak.xlsx", sheet = 1, col_names = FALSE, range = 'A2:A6'), use.names = FALSE)
+## Remove unit
+T1SubsectRegion.Type <- unlist(strsplit(T1SubsectRegion.Type, ","))[c(TRUE, FALSE)]
 T1SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak.xlsx", sheet = 1, col_names = FALSE, range = 'B7:H7'))
 T1SubsectRegion.Product <- c("Cereals", "Oil crops", "Fruits", "Vegetables", "Roots and tubers")
 
