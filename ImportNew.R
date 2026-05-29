@@ -57,6 +57,15 @@ T1.df$Product <- factor(T1.df$Product, levels = T1SubsectRegion.Product)
 T1.df$Region <- factor(T1.df$Region, levels = T1SubsectRegion.Region)
 T1.df$Type <- factor(T1.df$Type, levels = T1SubsectRegion.Type[5:1])
 
+## Unify spread in all Type
+OrderStandard <- order(T1.df[, "Type"])
+MakeStandard.df <- T1.df[OrderStandard, c("Type","Diff")]
+IsStdTyp <- unlist(tapply(MakeStandard.df[, "Diff"],
+                          MakeStandard.df[, "Type"],
+                          FUN = function(x) as.numeric(scale(x, center = FALSE)), simplify = TRUE))
+T1.df[, "Standard"] <- IsStdTyp[order(OrderStandard)]
+
+
 #############
 ### Third table
 #############

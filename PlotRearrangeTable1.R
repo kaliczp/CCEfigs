@@ -6,7 +6,7 @@ levels(T1.df$Region) <- c("CE", "EE", "NE", "SE", "SEE", "WE", "E")
 out <- ggplot(T1.df,
               aes(x = Region,
                   y = Type,
-                  fill = Diff)) +
+                  fill = Standard)) +
     geom_tile(color = "white", linewidth = 0.3, show.legend = FALSE) +
     facet_wrap(~ Product, ncol = 3) +
     scale_fill_gradient2(
