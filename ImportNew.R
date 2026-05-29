@@ -64,9 +64,3 @@ IsStdTyp <- unlist(tapply(MakeStandard.df[, "Diff"],
                           MakeStandard.df[, "Type"],
                           FUN = function(x) as.numeric(scale(x, center = FALSE)), simplify = TRUE))
 T1.df[, "Standard"] <- IsStdTyp[order(OrderStandard)]
-
-
-#############
-### Third table
-#############
-read_excel("kalicz_peti_tablaabrak.xlsx", sheet = 2, col_names = F)
