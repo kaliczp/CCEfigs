@@ -5,7 +5,7 @@ library(readxl)
 T2SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak.xlsx", sheet = 2, col_names = FALSE, range = 'A2:A7'), use.names = FALSE)
 ## Remove unit
 T2SubsectRegion.Type <- unlist(strsplit(T2SubsectRegion.Type, ","))[c(TRUE, FALSE)]
-T2SubsectRegion.Type[6] <- "Ratio in agriculture gross prod."
+T2SubsectRegion.Type[6] <- "Ratio in agr. gross prod."
 T2SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak.xlsx", sheet = 2, col_names = FALSE, range = 'B8:H8'))
 T2SubsectRegion.Product <- c("Wheat", "Maize", "Barley", "Rapeseed", "Sunflower")
 #####
