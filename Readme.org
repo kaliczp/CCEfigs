@@ -12,3 +12,6 @@ Azt, hogy a régió vagy az attribútumok kerüljenek az x vagy az y
 tengelyre az határozta meg, melyiknek rövidebb a neve.
 
 A régiók megnevezését rövidíteni kellene Central Europe=CE, Eastern Europe=EE ...
+
+* Quick change
+Csak az Area in agricultural lands x-tengely feliratot cseréld ki, kérlek, Area in harvested area-ra.
