@@ -1,8 +1,6 @@
 library(ggplot2)
-
 # Abbreviated region names
 levels(T1.df$Region) <- c("CE", "EE", "NE", "SE", "SEE", "WE", "E")
-
 out <- ggplot(T1.df,
               aes(x = Region,
                   y = Type,
@@ -36,6 +34,6 @@ outtext <- out +
     geom_text(aes(label = round(Diff, 1)),
               size = 3
 )
-pdf("PlotTable1Blue.pdf", width = 8, height = 6)
+pdf("PlotTable1Blue.pdf", width = 9, height = 4.8)
 outtext
 dev.off()
