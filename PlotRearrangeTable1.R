@@ -36,6 +36,6 @@ outtext <- out +
     geom_text(aes(label = round(Diff, 1)),
               size = 3
 )
-pdf("PlotTable1NewStd.pdf", width = 8, height = 6)
+pdf("PlotTable1Blue.pdf", width = 8, height = 6)
 outtext
 dev.off()

@@ -56,3 +56,5 @@ IsStdTyp <- unlist(tapply(MakeStandard.df[, "Diff"],
                           MakeStandard.df[, "Type"],
                           FUN = function(x) as.numeric(scale(x, center = FALSE)), simplify = TRUE))
 T1.df[, "Standard"] <- IsStdTyp[order(OrderStandard)]
+## Increase negative value for more blue
+T1.df[T1.df$Standard < 0, "Standard"] <- T1.df[T1.df$Standard < 0, "Standard"] * 2
