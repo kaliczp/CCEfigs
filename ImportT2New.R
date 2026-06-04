@@ -57,7 +57,7 @@ T2Sunflower <- data.frame(Product = T2SubsectRegion.Product[5],
 ## 5 crops
 #####
 T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B47:H52')
-T25crops <- data.frame(Product = T2SubsectRegion.Product[5],
+T25crops <- data.frame(Product = T2SubsectRegion.Product[6],
                        Region = rep(T2SubsectRegion.Region, each = 6),
                        Type = T2SubsectRegion.Type,
                        Diff = round(as.numeric(as.matrix(T2SubsectRegion)))
