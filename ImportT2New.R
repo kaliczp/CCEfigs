@@ -7,7 +7,7 @@ T2SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak_2026-06-04.xls
 T2SubsectRegion.Type <- unlist(strsplit(T2SubsectRegion.Type, ","))[c(TRUE, FALSE)]
 T2SubsectRegion.Type[6] <- "Ratio in agr. gross prod."
 T2SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B8:H8'))
-T2SubsectRegion.Product <- c("Wheat", "Maize", "Barley", "Rapeseed", "Sunflower")
+T2SubsectRegion.Product <- c("Wheat", "Maize", "Barley", "Rapeseed", "Sunflower", "5 crops")
 #####
 ## Wheat
 #####
@@ -53,8 +53,17 @@ T2Sunflower <- data.frame(Product = T2SubsectRegion.Product[5],
                        Type = T2SubsectRegion.Type,
                        Diff = round(as.numeric(as.matrix(T2SubsectRegion)))
                        )
+#####
+## 5 crops
+#####
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B47:H52')
+T25crops <- data.frame(Product = T2SubsectRegion.Product[5],
+                       Region = rep(T2SubsectRegion.Region, each = 6),
+                       Type = T2SubsectRegion.Type,
+                       Diff = round(as.numeric(as.matrix(T2SubsectRegion)))
+                       )
 ## All together
-T2.df <- rbind(T2Wheat, T2Maize, T2Barley, T2Rapeseed, T2Sunflower)
+T2.df <- rbind(T2Wheat, T2Maize, T2Barley, T2Rapeseed, T2Sunflower, T25crops)
 ## Factor from character
 T2.df$Product <- factor(T2.df$Product, levels = T2SubsectRegion.Product)
 T2.df$Region <- factor(T2.df$Region, levels = T2SubsectRegion.Region)
