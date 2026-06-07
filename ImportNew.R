@@ -3,42 +3,42 @@ library(readxl)
 ### Second table
 #############
 # Get indicator type Harvested ... e.g.
-T1SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'A2:A6'), use.names = FALSE)
+T1SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'A2:A6'), use.names = FALSE)
 ## Remove unit
 T1SubsectRegion.Type <- unlist(strsplit(T1SubsectRegion.Type, ","))[c(TRUE, FALSE)]
 T1SubsectRegion.Type[4:5] <- c("Gross prod. in agriculture", "Area in harvested area")
-T1SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'B7:H7'))
+T1SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B7:H7'))
 T1SubsectRegion.Product <- c("Cereals", "Oil crops", "Fruits", "Vegetables", "Roots and tubers")
 ## Cereals
-T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'B2:H6')
+T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B2:H6')
 T1Cereals <- data.frame(Product = T1SubsectRegion.Product[1],
                         Region = rep(T1SubsectRegion.Region, each = 5),
                         Type = T1SubsectRegion.Type,
                         Diff = round(as.numeric(as.matrix(T1SubsectRegion)))
                         )
 ## Oil crops
-T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'B10:H14')
+T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B10:H14')
 T1OilCrops <- data.frame(Product = T1SubsectRegion.Product[2],
                          Region = rep(T1SubsectRegion.Region, each = 5),
                          Type = T1SubsectRegion.Type,
                          Diff = round(as.numeric(as.matrix(T1SubsectRegion)))
                          )
 ## Fruits
-T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'B18:H22')
+T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B18:H22')
 T1Fruits <- data.frame(Product = T1SubsectRegion.Product[3],
                              Region = rep(T1SubsectRegion.Region, each = 5),
                              Type = T1SubsectRegion.Type,
                              Diff = round(as.numeric(as.matrix(T1SubsectRegion)))
                              )
 ## Vegetables
-T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'B26:H30')
+T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B26:H30')
 T1vegetables <- data.frame(Product = T1SubsectRegion.Product[4],
                            Region = rep(T1SubsectRegion.Region, each = 5),
                            Type = T1SubsectRegion.Type,
                            Diff = round(as.numeric(as.matrix(T1SubsectRegion)))
                            )
 ## Roots and tubers
-T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 1, col_names = FALSE, range = 'B34:H38')
+T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B34:H38')
 T1roots <- data.frame(Product = T1SubsectRegion.Product[5],
                       Region = rep(T1SubsectRegion.Region, each = 5),
                       Type = T1SubsectRegion.Type,

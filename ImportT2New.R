@@ -2,16 +2,16 @@ library(readxl)
 #############
 ### Third table
 #############
-T2SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'A2:A7'), use.names = FALSE)
+T2SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'A2:A7'), use.names = FALSE)
 ## Remove unit
 T2SubsectRegion.Type <- unlist(strsplit(T2SubsectRegion.Type, ","))[c(TRUE, FALSE)]
 T2SubsectRegion.Type[6] <- "Ratio in agr. gross prod."
-T2SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B8:H8'))
+T2SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B8:H8'))
 T2SubsectRegion.Product <- c("Wheat", "Maize", "Barley", "Rapeseed", "Sunflower", "5 crops")
 #####
 ## Wheat
 #####
-T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B2:H7')
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B2:H7')
 T2Wheat <- data.frame(Product = T2SubsectRegion.Product[1],
                       Region = rep(T2SubsectRegion.Region, each = 6),
                       Type = T2SubsectRegion.Type,
@@ -20,7 +20,7 @@ T2Wheat <- data.frame(Product = T2SubsectRegion.Product[1],
 #####
 ## Maize
 #####
-T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B11:H16')
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B11:H16')
 T2Maize <- data.frame(Product = T2SubsectRegion.Product[2],
                       Region = rep(T2SubsectRegion.Region, each = 6),
                       Type = T2SubsectRegion.Type,
@@ -29,7 +29,7 @@ T2Maize <- data.frame(Product = T2SubsectRegion.Product[2],
 #####
 ## Barley
 #####
-T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B20:H25')
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B20:H25')
 T2Barley <- data.frame(Product = T2SubsectRegion.Product[3],
                        Region = rep(T2SubsectRegion.Region, each = 6),
                        Type = T2SubsectRegion.Type,
@@ -38,7 +38,7 @@ T2Barley <- data.frame(Product = T2SubsectRegion.Product[3],
 #####
 ## Rapeseed
 #####
-T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B29:H34')
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B29:H34')
 T2Rapeseed <- data.frame(Product = T2SubsectRegion.Product[4],
                        Region = rep(T2SubsectRegion.Region, each = 6),
                        Type = T2SubsectRegion.Type,
@@ -47,7 +47,7 @@ T2Rapeseed <- data.frame(Product = T2SubsectRegion.Product[4],
 #####
 ## Sunflower
 #####
-T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B38:H43')
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B38:H43')
 T2Sunflower <- data.frame(Product = T2SubsectRegion.Product[5],
                        Region = rep(T2SubsectRegion.Region, each = 6),
                        Type = T2SubsectRegion.Type,
@@ -56,7 +56,7 @@ T2Sunflower <- data.frame(Product = T2SubsectRegion.Product[5],
 #####
 ## 5 crops
 #####
-T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-04.xlsx", sheet = 2, col_names = FALSE, range = 'B47:H52')
+T2SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 2, col_names = FALSE, range = 'B47:H52')
 T25crops <- data.frame(Product = T2SubsectRegion.Product[6],
                        Region = rep(T2SubsectRegion.Region, each = 6),
                        Type = T2SubsectRegion.Type,
