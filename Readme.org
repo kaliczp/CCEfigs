@@ -15,3 +15,6 @@ A régiók megnevezését rövidíteni kellene Central Europe=CE, Eastern Europe
 
 * Quick change
 Csak az Area in agricultural lands x-tengely feliratot cseréld ki, kérlek, Area in harvested area-ra.
+
+* Additional change
+Table 1-et is szeretném kérni, legyél szíves kiegészíteni egy SUM táblával a jobb alsó sarokban.
