@@ -8,7 +8,7 @@ T1SubsectRegion.Type <- unlist(read_excel("kalicz_peti_tablaabrak_2026-06-05.xls
 T1SubsectRegion.Type <- unlist(strsplit(T1SubsectRegion.Type, ","))[c(TRUE, FALSE)]
 T1SubsectRegion.Type[4:5] <- c("Gross prod. in agriculture", "Area in harvested area")
 T1SubsectRegion.Region <- as.character(read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B7:H7'))
-T1SubsectRegion.Product <- c("Cereals", "Oil crops", "Fruits", "Vegetables", "Roots and tubers")
+T1SubsectRegion.Product <- c("Cereals", "Oil crops", "Fruits", "Vegetables", "Roots and tubers", "SUM")
 ## Cereals
 T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B2:H6')
 T1Cereals <- data.frame(Product = T1SubsectRegion.Product[1],
@@ -44,7 +44,15 @@ T1roots <- data.frame(Product = T1SubsectRegion.Product[5],
                       Type = T1SubsectRegion.Type,
                       Diff = round(as.numeric(as.matrix(T1SubsectRegion)))
                       )
-T1.df <- rbind(T1Cereals, T1OilCrops, T1Fruits, T1vegetables, T1roots)
+## Roots and tubers
+T1SubsectRegion <- read_excel("kalicz_peti_tablaabrak_2026-06-05.xlsx", sheet = 1, col_names = FALSE, range = 'B42:H46')
+T1sum <- data.frame(Product = T1SubsectRegion.Product[6],
+                      Region = rep(T1SubsectRegion.Region, each = 5),
+                      Type = T1SubsectRegion.Type,
+                      Diff = round(as.numeric(as.matrix(T1SubsectRegion)))
+                      )
+## All together
+T1.df <- rbind(T1Cereals, T1OilCrops, T1Fruits, T1vegetables, T1roots, T1sum)
 ## Factor
 T1.df$Product <- factor(T1.df$Product, levels = T1SubsectRegion.Product)
 T1.df$Region <- factor(T1.df$Region, levels = T1SubsectRegion.Region)
