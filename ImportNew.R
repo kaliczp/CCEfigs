@@ -66,3 +66,6 @@ IsStdTyp <- unlist(tapply(MakeStandard.df[, "Diff"],
 T1.df[, "Standard"] <- IsStdTyp[order(OrderStandard)]
 ## Increase negative value for more blue
 T1.df[T1.df$Standard < 0, "Standard"] <- T1.df[T1.df$Standard < 0, "Standard"] * 2
+## Uniformly standardised values
+T1.df$UniStandard <- scale(T1.df$Diff, center = FALSE)
+T1.df[T1.df$UniStandard < 0, "UniStandard"] <- T1.df[T1.df$UniStandard < 0, "UniStandard"] * 5
