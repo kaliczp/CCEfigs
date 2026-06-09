@@ -68,4 +68,10 @@ T1.df[, "Standard"] <- IsStdTyp[order(OrderStandard)]
 T1.df[T1.df$Standard < 0, "Standard"] <- T1.df[T1.df$Standard < 0, "Standard"] * 2
 ## Uniformly standardised values
 T1.df$UniStandard <- scale(T1.df$Diff, center = FALSE)
-T1.df[T1.df$UniStandard < 0, "UniStandard"] <- T1.df[T1.df$UniStandard < 0, "UniStandard"] * 5
+T1.df[T1.df$UniStandard < 0, "UniStandard"] <- T1.df[T1.df$UniStandard < 0, "UniStandard"] * 4
+## Log standardised values
+T1.df$LogStandard <- scale(T1.df$Diff, center = FALSE)
+T1.df[T1.df$LogStandard < 0, "LogStandard"] <- T1.df[T1.df$LogStandard < 0, "LogStandard"] * 4
+tmp <- log(T1.df[T1.df$LogStandard > 0, "LogStandard"])
+tmp <- tmp + abs(min(tmp))
+T1.df[T1.df$LogStandard > 0, "LogStandard"] <- tmp / 4
