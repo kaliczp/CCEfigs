@@ -3,7 +3,7 @@ levels(T2.df$Region) <- c("E", "WE", "SEE", "SE", "NE", "EE", "CE")
 out <- ggplot(T2.df,
               aes(x = Region,
                   y = Type,
-                  fill = UniStandard)) +
+                  fill = LogStandard)) +
     geom_tile(color = "white", linewidth = 0.3, show.legend = FALSE) +
     facet_wrap(~ Product, ncol = 3) +
     scale_fill_gradient2(
@@ -33,6 +33,6 @@ outtext <- out +
     geom_text(aes(label = round(Diff, 1)),
               size = 3
 )
-pdf("PlotTable2UniStandard.pdf", width = 9, height = 5.5)
+pdf("PlotTable2LogStandard.pdf", width = 9, height = 5.5)
 outtext
 dev.off()

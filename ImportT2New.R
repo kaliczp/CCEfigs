@@ -80,3 +80,9 @@ T2.df[T2.df$Standard < 0, "Standard"] <- T2.df[T2.df$Standard < 0, "Standard"] *
 ## Uniformly standardised values
 T2.df$UniStandard <- scale(T2.df$Diff, center = FALSE)
 T2.df[T2.df$UniStandard < 0, "UniStandard"] <- T2.df[T2.df$UniStandard < 0, "UniStandard"] * 100
+## Log standardised values
+T2.df$LogStandard <- scale(T2.df$Diff, center = FALSE)
+T2.df[T2.df$LogStandard < 0, "LogStandard"] <- T2.df[T2.df$LogStandard < 0, "LogStandard"] * 40
+tmp <- log(T2.df[T2.df$LogStandard > 0, "LogStandard"])
+tmp <- tmp + abs(min(tmp))
+T2.df[T2.df$LogStandard > 0, "LogStandard"] <- tmp / 10
