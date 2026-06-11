@@ -1,6 +1,6 @@
 library(readxl)
 ## First table heat index
-Rangsor <- read_excel("kalicz_peti_CEE_abrak.xlsx")
+Rangsor <- read_excel("kalicz_peti_rangsorabra.xlsx")
 names(Rangsor) <- c("Country", "Index")
 ## Abbreviated names
 Rangsor[c(4, 7, 23, 24, 36, 39),"Country"] <- c("Azerb.", "Bosnia", "Netherl.", "N. Maced.", "Switzerl.", "U. K.")
