@@ -20,4 +20,4 @@ TnewNov <- data.frame(
 ## Factors
 TnewNov$Product <- factor(TnewNov$Product, levels = colnames(raw)[-1])
 TnewNov$Region <- factor(TnewNov$Region, levels = raw[seq(1,29,4), 1])
-TnewNov$Type <- factor(TnewNov$Type, levels = raw[2:4, 1])
+TnewNov$Type <- factor(TnewNov$Type, levels = (raw[2:4, 1])[3:1])
