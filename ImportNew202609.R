@@ -4,6 +4,15 @@ library(readxl)
 #############
 raw <- as.data.frame(read_excel("uj_tabla-abra.xlsx"))
 
+## Convert to numeric
 for(nColumn in 2:ncol(raw)){
     raw[, nColumn] <- as.numeric(gsub("\\+","",raw[ , nColumn]))
 }
+
+## Create data.frame
+data.frame(
+    Product = rep(colnames(raw)[-1], each = 24),
+    Region = rep(rep(raw[seq(1,29,4), 1], each = 3), 5),
+    Type = rep(raw[2:4, 1], 8 * 5),
+    Value = as.numeric(as.matrix(raw[, -1])[-(seq(1,29,4)),])
+)
