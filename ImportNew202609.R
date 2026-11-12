@@ -10,9 +10,14 @@ for(nColumn in 2:ncol(raw)){
 }
 
 ## Create data.frame
-data.frame(
+TnewNov <- data.frame(
     Product = rep(colnames(raw)[-1], each = 24),
     Region = rep(rep(raw[seq(1,29,4), 1], each = 3), 5),
     Type = rep(raw[2:4, 1], 8 * 5),
     Value = as.numeric(as.matrix(raw[, -1])[-(seq(1,29,4)),])
 )
+
+## Factors
+TnewNov$Product <- factor(TnewNov$Product, levels = colnames(raw)[-1])
+TnewNov$Region <- factor(TnewNov$Region, levels = raw[seq(1,29,4), 1])
+TnewNov$Type <- factor(TnewNov$Type, levels = raw[2:4, 1])
