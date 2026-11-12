@@ -4,11 +4,6 @@ library(readxl)
 #############
 raw <- as.data.frame(read_excel("uj_tabla-abra_2026-11-12.xlsx"))
 
-## Convert to numeric
-for(nColumn in 2:ncol(raw)){
-    raw[, nColumn] <- as.numeric(gsub("\\+","",raw[ , nColumn]))
-}
-
 ## Create data.frame
 TnewNov <- data.frame(
     Product = rep(colnames(raw)[-1], each = 24),
