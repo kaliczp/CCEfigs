@@ -35,6 +35,6 @@ outtext <- out +
               size = 3
 )
 
-pdf("PlotTableNewNov12.pdf", width = 6, height = 5)
+pdf("PlotTableNewNov12.pdf", width = 6.5, height = 5)
 outtext
 dev.off()
