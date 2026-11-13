@@ -8,8 +8,10 @@ out <- ggplot(TnewNov,
     geom_tile(color = "white", linewidth = 0.5, show.legend = FALSE) +
     facet_wrap(~ Product, ncol = 2) +
     scale_fill_gradient2(
-        low = "white",
+        low = "#2166AC",
+        mid = "white",
         high = "#B2182B",
+        midpoint = 0,
         name = NULL
     ) +
     coord_equal() +
@@ -33,6 +35,6 @@ outtext <- out +
               size = 3
 )
 
-pdf("PlotTableNewNov.pdf", width = 6, height = 5)
+pdf("PlotTableNewNov12.pdf", width = 6, height = 5)
 outtext
 dev.off()
